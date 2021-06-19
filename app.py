@@ -10,7 +10,7 @@ import tempfile
 from autocrop import Cropper
 
 BASE_URL = 'https://agedetection-tyxhjmug3a-ew.a.run.app/image'  #Tiago
-BASE_URL = "127.0.0.1:8000/image"
+# BASE_URL = "127.0.0.1:8000/image"
 # BASE_URL = 'https://agedetection-m2ianlcoya-ew.a.run.app/image'   #Felix
 
 #Page Layout
@@ -35,13 +35,17 @@ with col2:
         st.image(image_normal, caption='', width=300)
         cropper = Cropper(width=200, height=200)
         cropped_array = cropper.crop("tmp.png")
-        cropped_image = Image.fromarray(cropped_array)
-        cropped_image.save('cropped.png')
-        image_cropped = Image.open('cropped.png')
+        if cropped_array is None:
+            '''### There is no Human Face on the Picture.'''
+            '''### So we can not predict the Age. Sorry! '''
+        else:
+            cropped_image = Image.fromarray(cropped_array)
+            cropped_image.save('cropped.png')
+            image_cropped = Image.open('cropped.png')
 
 
-        files = {'file':uploaded_file.getvalue()
-                }
+            files = {'file':uploaded_file.getvalue()
+                    }
 
 
 if files != None:
@@ -62,7 +66,7 @@ if files != None:
                 BASE_URL,
                 files=files
             )
-            age_bin=response.json()['Initial Age Bin']
+            age_bin=response.json()['Age Bin']
             guess = int(response.json()['Weighted Guess'])
 
             st.markdown(f'# Your age is between: **{age_bin}**')
