@@ -13,6 +13,7 @@ from autocrop import Cropper
 # BASE_URL = "127.0.0.1:8000/image"
 BASE_URL = 'https://agedetection-m2ianlcoya-ew.a.run.app/image'   #Felix
 
+
 #Page Layout
 
 st.set_page_config(layout="wide")
@@ -66,7 +67,7 @@ if files != None:
                 BASE_URL,
                 files=files
             )
-            age_bin=response.json()['Age Bin']
+            age_bin=response.json()['Initial Age Bin']
             guess = int(response.json()['Weighted Guess'])
 
             st.markdown(f'# Your age is between: **{age_bin}**')
