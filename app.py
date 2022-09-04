@@ -9,9 +9,9 @@ from PIL import Image
 import tempfile
 from autocrop import Cropper
 
-BASE_URL = 'https://agedetection-tyxhjmug3a-ew.a.run.app/image'  #Tiago
+# BASE_URL = 'https://agedetection-tyxhjmug3a-ew.a.run.app/image'  #Tiago
 # BASE_URL = "127.0.0.1:8000/image"
-# BASE_URL = 'https://agedetection-m2ianlcoya-ew.a.run.app/image'   #Felix
+BASE_URL = 'https://agedetection-m2ianlcoya-ew.a.run.app/image'   #Felix
 
 #Page Layout
 
